@@ -1,0 +1,14 @@
+<Categories>
+	<c><t>Animal Kingdom</t>
+		<i>They are all around us.\nDescribe the animal as best you can.</i>
+		<f>AnimalKingdom.xml</f>
+		<b>qrc:///data/elephant6b.png</b></c>
+	<c><t>Celebrities</t>
+		<i>Guess the celebrity using movies, tv shows or character names.</i>
+		<f>Celebrities.xml</f>
+		<b>qrc:///data/theoscaraward.png</b></c>
+	<c><t>Disney Characters</t>
+		<i>Disney created some of the most memorable characters.\nCan you remember them all?</i>
+		<f>DisneyCharacters.xml</f>
+		<b>qrc:///data/Mickey_Mouse_head_and_ears.png</b></c>
+</Categories>

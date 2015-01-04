@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/Categories.xml</file>
+        <file>data/AnimalKingdom.xml</file>
+        <file>data/Celebrities.xml</file>
+        <file>data/DisneyCharacters.xml</file>
+        <file>data/Mickey_Mouse_head_and_ears.png</file>
+        <file>data/elephant6b.png</file>
+        <file>data/theoscaraward.png</file>
+    </qresource>
+</RCC>
