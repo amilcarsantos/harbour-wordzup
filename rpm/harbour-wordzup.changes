@@ -1,8 +1,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sun Jan 05 2015 Amilcar Santos <jack.tar@example.com> 0.0.1-1
+* Mon Jan 05 2015 Amilcar Santos <amilcar.santos@gmail.com> 0.0.1-2
+- Fix harbour RPM requirements
+- Score page navigates back to first page
+
+* Sun Jan 04 2015 Amilcar Santos <amilcar.santos@gmail.com> 0.0.1-1
 - Initial relase (with limitations)
--
 
 

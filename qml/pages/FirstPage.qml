@@ -49,9 +49,9 @@ Page {
 		}
 	}
 
-//	ListModel {
-//		id: words
-//	}
+	ListModel {
+		id: scoreModel
+	}
 
 	Component.onCompleted: {
 		mainWindow.initialUpdate.connect(function() {
@@ -78,7 +78,10 @@ Page {
 					var category = categoryModel.get(categoryView.currentIndex);
 					var categoryId = category.id;
 					mainWindow.currentCategory = category.text;
-					pageStack.push(Qt.resolvedUrl("GamePage.qml"), {categoryId:categoryId});
+					pageStack.push(Qt.resolvedUrl("GamePage.qml"), {
+										scoreModel: scoreModel,
+										categoryId: categoryId
+									}, PageStackAction.Animated);
 				}
 			}
 		}

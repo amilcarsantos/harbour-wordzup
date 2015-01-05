@@ -39,7 +39,7 @@ Page {
 
 	allowedOrientations: Orientation.Landscape
 
-//	property variant wordsModel
+	property ListModel scoreModel
 
 //	TODO property variant gameRules
 
@@ -53,8 +53,8 @@ Page {
 		if (state == 'in_game') {
 			scoreModel.append({
 				text: _currentText,
-				gessed: gessed,
-				score: 'game'
+				gessed: gessed
+				//score: 'game'
 			});
 		}
 		if (countdown.pos > 0) {
@@ -114,25 +114,25 @@ Page {
 	SilicaFlickable {
 		anchors.fill: parent
 
-		PullDownMenu {
-			id: pullMenu
-			visible: pullMenuVisible()
-			function pullMenuVisible() {
-				if (gamePage.state == 'game_over_score' && gamePage.status !== PageStatus.Deactivating) {
-					return true;
-				}
-				if (gamePage.state == 'get_ready' && pullMenu.active) {
-					return true;
-				}
-				return false;
-			}
-			MenuItem {
-				text: qsTr("Restart")
-				onClicked: {
-					gamePage.state = 'get_ready';
-				}
-			}
-		}
+//		PullDownMenu {
+//			id: pullMenu
+//			visible: pullMenuVisible()
+//			function pullMenuVisible() {
+//				if (gamePage.state == 'game_over_score' && gamePage.status !== PageStatus.Deactivating) {
+//					return true;
+//				}
+//				if (gamePage.state == 'get_ready' && pullMenu.active) {
+//					return true;
+//				}
+//				return false;
+//			}
+//			MenuItem {
+//				text: qsTr("Restart")
+//				onClicked: {
+//					gamePage.state = 'get_ready';
+//				}
+//			}
+//		}
 
 		CountDownClock {
 			id: countdown
@@ -236,9 +236,9 @@ Page {
 		id:wordsModel
 	}
 
-	ListModel {
-		id: scoreModel
-	}
+//	ListModel {
+//		id: scoreModel
+//	}
 
 	states: [
 		State {
@@ -287,15 +287,16 @@ Page {
 		id:gameOverTimer
 		interval: 1000
 		onTriggered: {
-			var scorePage = pageStack.push(Qt.resolvedUrl("ScorePage.qml"), {
-					resultModel: scoreModel,
-					remainTime: countdown.pos
-				});
+			pageStack.replace(Qt.resolvedUrl("ScorePage.qml"), {
+					scoreModel: scoreModel,
+					remainTime: countdown.pos,
+					categoryId: categoryId
+				}, PageStackAction.Animated);
 
-			scorePage.restartGame.connect(function () {
+//			scorePage.restartGame.connect(function () {
 //				console.log("--- RESTART !!!!");
-				state = 'get_ready';
-			});
+//				state = 'get_ready';
+//			});
 			state = 'game_over_score';
 		}
 	}

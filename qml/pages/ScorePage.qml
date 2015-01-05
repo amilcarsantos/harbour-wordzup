@@ -35,26 +35,35 @@ import Sailfish.Silica 1.0
 Page {
 	id: page
 
-	property variant resultModel
+	property ListModel scoreModel
 	property int remainTime: 0
+	property int categoryId
 	property int _gessedCount
 	property int _score
 
-	signal restartGame()
+//	signal restartGame()
+	ListModel {
+		id: _scoreModel
+	}
 
 	Component.onCompleted: {
 		_gessedCount = 0
-		for (var i=0; i < resultModel.count; i++) {
-			if (resultModel.get(i).gessed) {
+		for (var i=0; i < scoreModel.count; i++) {
+			if (scoreModel.get(i).gessed) {
 				_gessedCount = _gessedCount + 1
 			}
+			_scoreModel.append({
+				text: scoreModel.get(i).text,
+				gessed: scoreModel.get(i).gessed,
+				score: 'game'
+			});
 		}
 		_score = _gessedCount * 20 + remainTime;		// TODO
 	}
 
 	SilicaListView {
 		id: listView
-		model: resultModel
+		model: _scoreModel
 		anchors.fill: parent
 		header: PageHeader {
 			title: qsTr("Score")
@@ -64,8 +73,12 @@ Page {
 			MenuItem {
 				text: qsTr("Restart")
 				onClicked: {
-					restartGame()
-					pageStack.pop();
+//					restartGame()
+//					pageStack.pop();
+					pageStack.replace(Qt.resolvedUrl("GamePage.qml"), {
+										scoreModel: scoreModel,
+										categoryId: categoryId
+									}, PageStackAction.Animated);
 				}
 			}
 		}
@@ -180,7 +193,7 @@ Page {
 				height: parent.height
 				color: Theme.primaryColor
 				opacity: 0.05
-				visible: resultModel.count & 1
+				visible: _scoreModel.count & 1
 			}
 
 			Label {
